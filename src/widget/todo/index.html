@@ -1,0 +1,76 @@
+<div id="hrbphome-todo" class="home-list widget">
+    <div class="title">
+        <div class="main-title">我的待办</div>
+        <!-- <div class="sub-title">按创建时间排序</div> -->
+        <el-select class="title-select" v-model="todoType" @change="getData()" placeholder="请选择">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+        </el-select>
+    </div>
+    <div class="container">
+        <ul class="list-content">
+            <!--<li>-->
+            <!--<span class="leibie">出差申请</span>-->
+            <!--<span class="processInstanceName">康富租赁项目需求调研</span>-->
+            <!--<span class="startParticipantName">夏梦欣</span>-->
+            <!--<span class="bumen">融资租赁事业部</span>-->
+            <!--<span class="startTime">周四 上午9:15</span>-->
+            <!--<button class="agreeBtn" @click="showDialog('1')">同意</button>-->
+            <!--<button class="detailBtn">查看详情</button>-->
+            <!--</li>-->
+            <template v-if="todoType == 'todo'">
+                    <li v-for="item in todoListValue.data">
+                        <!--<span class="leibie">出差申请</span>-->
+                        <span class="processInstanceName">{{item.processInstanceName}}</span>
+                        <span class="startParticipantName">{{item.startParticipantName}}</span>
+                        <!--<span class="bumen">融资租赁事业部</span>-->
+                        <span class="startTime">{{item.startTime}}</span>
+                        <button class="agreeBtn" @click="showDialog(item)">同意</button>
+                        <button class="detailBtn" @click="jumpMoreInfo(item)">查看详情</button>
+                    </li>
+                </template>
+
+            <!-- todoType -->
+            <template v-else-if="todoType == 'claim'">
+                    <li v-for="item in todoListValue.data">
+                        <!--<span class="leibie">出差申请</span>-->
+                        <span class="processInstanceName">{{item.processInstanceName}}</span>
+                        <span class="startParticipantName">{{item.startParticipantName}}</span>
+                        <!--<span class="bumen">融资租赁事业部</span>-->
+                        <span class="startTime">{{item.startTime}}</span>
+                        <button class="agreeBtn" @click="doClaim(item)">认领</button>
+                        <button class="detailBtn" @click="jumpMoreInfo(item)">查看详情</button>
+                    </li>
+                </template>
+
+
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="footer-text">
+            <span class="fl" v-if="todoListValue.data.length > 0 "> {{this.size}}/<span class="total">{{this.todoListValue.total}}</span> &nbsp;&nbsp;&nbsp; {{time}}之前更新</span>
+            <a class="hrfont more" title="更多" @click="jumpMore">更多</a>
+        </div>
+    </div>
+
+    <el-dialog title="审批意见" :visible.sync="dialogVisible" size="tiny">
+        <el-form label-position="left">
+            <el-form-item label="环节与指派：" :label-width="formLabelWidth" v-show="designateList.length">
+                <div v-for="item in designateList" :key="item.participants_01">
+                    <p>{{item.activityName}}</p>
+                    <el-select v-model="item.participants_01" multiple @change="test" placeholder="请选择">
+                        <el-option v-for="item_01 in item.participants" :label="item_01.name" :value="item_01.id" :key="item_01.id">
+                        </el-option>
+                    </el-select>
+                </div>
+            </el-form-item>
+            <el-form-item label="审批意见：" :label-width="formLabelWidth">
+                <el-input type="textarea" :rows="2" placeholder="请输入同意理由" show-close="false" v-model="comment"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="action">确 定</el-button>
+            </span>
+    </el-dialog>
+</div>

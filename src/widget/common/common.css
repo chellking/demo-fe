@@ -1,0 +1,49 @@
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.widget-container {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.widget-header,
+.widget-content,
+.widget-footer {
+  box-sizing: border-box;
+  background: #fff;
+}
+.widget-header {
+  height: 52px;
+  line-height: 52px;
+  border-bottom: 1px solid #E6E6EB;
+}
+.widget-header .widget-title {
+  margin-left: 16px;
+  font-size: 16px;
+  color: #333333;
+}
+.widget-content {
+  height: 300px;
+}
+.widget-content.no-footer {
+  height: 348px;
+}
+.widget-footer {
+  height: 48px;
+  border-top: 1px solid #E6E6EB;
+}

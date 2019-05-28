@@ -1,0 +1,189 @@
+.widget-address {
+  font-size: 14px;
+}
+.widget-address .widget-filter {
+  float: right;
+  width: 190px;
+  /* 自适应 */
+  /* width: calc(100% - 90px);
+  max-width: 190px; */
+  margin: 10px 16px 0 0;
+}
+.widget-address ::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+}
+@media screen and (max-width: 1200px) {
+  .widget-address .widget-filter {
+    width: 136px;
+  }
+  .widget-address .filter-item-subtitle {
+    /* max-width: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+  }
+}
+@media screen and (max-width: 990px) {
+  .widget-address .widget-filter {
+    width: 190px;
+  }
+  .widget-address .filter-item-subtitle {
+    /* max-width: none; */
+  }
+}
+.widget-address .widget-content {
+  padding: 0 16px;
+}
+.widget-address .no-result {
+  line-height: 20px;
+  text-align: center;
+  color: #75787B;
+}
+.widget-address .no-result i {
+  margin: 104px 0 16px;
+  text-align: center;
+  font-size: 64px;
+}
+.widget-address .ifbp-icon-assignment-ind {
+  color: #3ABFA3;
+}
+.widget-address .filter-items {
+  height: 100%;
+  overflow: auto;
+  margin: 0 -16px;
+}
+.widget-address .filter-item {
+  box-sizing: border-box;
+  height: 64px;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #E6E6EB;
+  cursor: pointer;
+}
+.widget-address .current-avatar,
+.widget-address .filter-item-avatar,
+.widget-address .department-user .user-avatar {
+  border-radius: 50%;
+  background: center center no-repeat #E6E6EB;
+  background-size: cover;
+}
+.widget-address .filter-item-avatar {
+  float: left;
+  width: 48px;
+  height: 48px;
+}
+.widget-address .filter-item-info {
+  margin-left: 64px;
+  line-height: 24px;
+  color: #75787B;
+}
+.widget-address .filter-item-titles {
+  height: 24px;
+  display: flex;
+}
+.widget-address .filter-item-title {
+  font-size: 16px;
+  color: #333333;
+  margin-right: 8px;
+  max-width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.widget-address .filter-item-subtitle {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
+/* 用户信息 */
+.widget-address .current-user {
+  padding-top: 16px;
+  line-height: 14px;
+  color: #000000;
+}
+.widget-address .current-user .clickable {
+  color: #5AC8FA;
+  cursor: pointer;
+}
+.widget-address .current-user .el-row {
+  margin-bottom: 9px;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+.widget-address .current-user .label {
+  text-align: right;
+  color: #75787B;
+}
+.widget-address .current-avatar {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 8px;
+}
+.widget-address .current-name {
+  margin-bottom: 8px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+.widget-address .current-job {
+  margin-bottom: 12px;
+  color: #75787B;
+  text-align: center;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+/* 部门员工列表 */
+.widget-address .operators {
+  padding: 12px 0;
+  line-height: 16px;
+  color: #888888;
+}
+.widget-address .operators .back-btn {
+  cursor: pointer;
+}
+.widget-address .operators i {
+  font-size: 16px;
+}
+.widget-address .department-users {
+  overflow: auto;
+  height: 308px;
+  /* 保证user间间隔16px, 且消除滚动条出现时的影响 */
+  margin: -8px -16px -8px -8px;
+}
+.widget-address .department-user {
+  float: left;
+  width: 84px;
+  height: 86px;
+  margin: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+.widget-address .department-user .user-avatar {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+.widget-address .department-user .user-name {
+  margin-top: 8px;
+  color: #000000;
+}
+.widget-address .department-user .user-title {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #75787B;
+}
+
+/* 溢出隐藏 */
+.widget-address .current-job,
+.widget-address .department-user .user-title,
+.widget-address .department-user .user-name,
+.widget-address .current-user .organization .value,
+.widget-address .current-user .department .value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,148 @@
+<el-row id="addressList" class="widget-container widget-address">
+	<el-col :span="24">
+		<header class="widget-header">
+			<span class="widget-title">通讯录</span>
+			<el-input
+				class="widget-filter"
+        placeholder="搜索姓名／电话／部门"
+        v-model="filterStr"
+        icon="search"
+				@keyup.enter.native="getFilterResult"
+				@change="filterStrChange"
+        :on-icon-click="getFilterResult"></el-input>
+		</header>
+		<section class="widget-content no-footer">
+			<!-- 初始状态 -->
+			<template v-if="!filterStr">
+				<div class="no-result">
+					<i class="ifbp-icon-assignment-ind"></i>
+					<div>快速找人，高效沟通</div>
+					<div>多维度展示人员信息</div>
+				</div>
+			</template>
+			<!-- 部门人员列表 -->
+			<template v-else-if="Array.isArray(departmentUsers) && departmentUsers.length">
+				<div class="operators clearfix">
+					<div class="back-btn fl"
+						@click="backBtnClicked">
+						<i class="ifbp-icon-angle-left fl"></i>
+						<span>返回</span>
+					</div>
+					<div class="fr">{{ (showLeader ? '成员 ' : '下级成员 ') + departmentUsers.length }}</div>
+				</div>
+				<div class="department-users clearfix">
+					<div class="department-user fl"
+						v-for="(user, index) in departmentUsers"
+						:key="index"
+						@click="getUserInfo(user.id)"
+					>
+						<div class="user-avatar" :style="{
+							'background-image': 'url(/ifbp-app-bd/bd/psn/psndoc/avatarImgDownLoad?avatar=' + (user.avatar ? user.avatar : '') + ')'
+						}"></div>
+						<div class="user-name">{{ user.name }}</div>
+						<div class="user-title">{{ user.psnjobs }}</div>
+					</div>
+				</div>
+			</template>
+			<!-- 搜索结果, 用户及公司列表 -->
+			<div class="filter-items" v-else-if="Array.isArray(filterResult) && filterResult.length">
+				<div class="filter-item"
+					v-for="(item, index) in filterResult"
+					:key="index"
+					@click="filterResultClicked(item)"
+				>
+					<div class="filter-item-avatar fl"
+						:style="{
+							'background-image': 'url(/ifbp-app-bd/bd/psn/psndoc/avatarImgDownLoad?avatar=' + item.fe_avatar + ')'
+						}"
+					></div>
+					<div class="filter-item-info">
+						<div class="filter-item-titles">
+							<span class="filter-item-title" :title="item.fe_title">{{ item.fe_title }}</span>
+							<span class="filter-item-subtitle" :title="item.fe_subtitle">{{ item.fe_subtitle }}</span>
+						</div>
+						<div class="filter-item-content" v-if="item.fe_type === 'psndoc'">{{ item.fe_content }}</div>
+						<div class="filter-item-content" v-else-if="item.fe_type === 'dept' && item.fe_content">{{ '负责人：' + item.fe_content }}</div>
+					</div>
+				</div>
+			</div>
+			<!-- 用户信息 -->
+			<div class="current-user" v-else-if="currentUser">
+				<div class="current-avatar"
+					:style="{
+						'background-image': 'url(/ifbp-app-bd/bd/psn/psndoc/avatarImgDownLoad?avatar=' + currentUser.avatar + ')'
+					}"
+				></div>
+				<div class="current-name">{{ currentUser.name }}</div>
+				<div
+					class="current-job"
+					:title="currentUser.deptName + (currentUser.jobname ? '-' + currentUser.jobname : '')"
+				>{{ currentUser.deptName + (currentUser.jobname ? '-' + currentUser.jobname : '') }}</div>
+				<el-row :gutter="16">
+					<el-col :span="4" class="label">手机</el-col>
+					<el-col :span="20" class="value">{{ currentUser.mobile || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16">
+					<el-col :span="4" class="label">工号</el-col>
+					<el-col :span="20" class="value">{{ currentUser.psncode || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16">
+					<el-col :span="4" class="label">办公</el-col>
+					<el-col :span="20" class="value">{{ currentUser.tel || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16">
+					<el-col :span="4" class="label">邮箱</el-col>
+					<el-col :span="20" class="value">{{ currentUser.email || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16" class="superior">
+					<el-col :span="4" class="label">上级</el-col>
+					<el-col :span="20"
+						class="value clickable"
+						v-if="currentUser.bossName && currentUser.bossId"
+						@click.native="getUserInfo(currentUser.bossId)"
+					>{{ currentUser.bossName }}</el-col>
+					<el-col :span="20"
+						class="value"
+						v-else
+					>{{ currentUser.bossName || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16" class="subordinate">
+					<el-col :span="4" class="label">下级</el-col>
+					<el-col :span="20"
+						class="value clickable"
+						v-if="currentUser.subordinate && currentUser.deptId"
+						@click.native="getDepartmentInfo(currentUser.deptId, currentUser.id)"
+					>{{ currentUser.subordinate }}</el-col>
+					<el-col :span="20"
+						class="value"
+						v-else
+					>{{ currentUser.subordinate || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16" class="organization">
+					<el-col :span="4" class="label">组织</el-col>
+					<el-col :span="20" class="value" :title="currentUser.corpName">{{ currentUser.corpName || '无' }}</el-col>
+				</el-row>
+				<el-row :gutter="16" class="department">
+					<el-col :span="4" class="label">部门</el-col>
+					<el-col :span="20"
+						class="value clickable"
+						v-if="currentUser.deptName && currentUser.deptId"
+						:title="currentUser.deptName"
+						@click.native="getDepartmentInfo(currentUser.deptId)"
+					>{{ currentUser.deptName }}</el-col>
+					<el-col :span="20"
+						class="value"
+						v-else
+					>{{ currentUser.deptName || '无' }}</el-col>
+				</el-row>
+			</div>
+			<!-- 搜索结果为空 -->
+			<template v-if="(filterStr === '4') || noResult">
+				<div class="no-result">
+					<i class="ifbp-icon-search"></i>
+					<div>找不到“{{ filterStr }}”</div>
+				</div>
+			</template>
+		</section>
+	</el-col>
+</el-row>

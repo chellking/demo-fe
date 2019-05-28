@@ -1,0 +1,38 @@
+
+<el-row id="homePage" class="widget-container">
+	<el-col :span=24>
+		<header class="widget-header">
+			<span class="widget-title">我的应用</span>			
+		</header>
+		<section class="widget-content">
+			<el-row>
+				<el-col v-for = "(item,index) in showList" :key = "index" :span="rowPersent">
+					<li class="myApps_list " @click='getUrlParam(item)'>
+						<div class="myApps_ico">
+							<i :class="['appIcon', item.appIcon,'iconfont_form']"></i></div>
+						<div class="myApps_name">{{item.label}}</div>
+					</li>
+				</el-col>
+			</el-row>						
+		</section>
+		<footer class="widget-footer" v-if = 'showCount > 1'>
+			
+			<div class = 'pagelist' >
+				<li :class = '{pagen:true, pageactive:showpage===index+1}' 
+					v-for = '(item,index) in showCount'
+				    @click = "changePage(index+1)" >
+				</li>			
+			</div>
+			<div @click='goLeft()'   class = 'page pageleft' >
+				<i class ='ifbp-icon-angle-left el-icon-arrow-left'></i>
+			</div>
+			<div  @click='goRight()' class = 'page pageright' >
+				<i class ='ifbp-icon-angle-right el-icon-arrow-right'></i>
+			</div>	
+		</footer>
+	</el-col>
+	
+</el-row>
+
+
+

@@ -1,0 +1,234 @@
+<el-row id="schedule" class="schedule">
+    <el-col :span="24">
+        <div id="schedule-container">
+            <header class="clearfix">
+                <div class="fl" style="margin-top: -1px;">
+                    <!-- <span class="schedule-logo">日程</span> -->
+                    <!-- 日程暂改日历 -->
+                    <span class="schedule-logo">日历</span>
+                    <el-button class="schedule-today-btn" @click="goBackToday">今天</el-button>
+                    <span class="schedule-change-month">
+                            <i class="ifbp-icon-angle-left el-icon-arrow-left" @click="pickPre"></i>
+                            <i class="ifbp-icon-angle-right el-icon-arrow-right" @click="pickNext" style="margin-left: 8px;"></i>
+                        </span>
+                    <span class="schedule-current-month" @click="changeMonth">{{ current_date }}</span>
+                </div>
+                <div class="fr">
+                    <span class="change-WM" @click="changeWM('week',$event)">周<i v-if="active_week" class="WM-active-bottom"></i></span>
+                    <span class="change-WM" @click="changeWM('month',$event)">月<i v-if="!active_week" class="WM-active-bottom"></i></span>
+                    <!-- 日程暂改日历 -->
+                    <span class="add-schedule" @click="addSchedule('schedule')"><i class="ifbp-icon-add"></i></span>
+                </div>
+            </header>
+            <div class="schedule-main">
+                <div class="schedule-main-week">
+                    <div class="week-title">
+                        <ul>
+                            <li>日</li>
+                            <li>一</li>
+                            <li>二</li>
+                            <li>三</li>
+                            <li>四</li>
+                            <li>五</li>
+                            <li>六</li>
+                        </ul>
+                    </div>
+                    <div class="calendar">
+                        <ul class="days">
+                            <!-- // 平台后端未开发 暂时使用days  日后应改为 current_days -->
+                            <li @click="pick(day.time,$event)" v-for="(day,index) in days" :key="index">
+                                <!--今天-->
+                                <div v-if="day.time.getMonth()+1 != currentMonth">
+                                    <span class="day other-month">
+                                            {{ day.time.getDate() }}
+                                            <i v-if="day.schedules.length > 0" class="calendar-active-bottom month-calendar-active-bottom"></i>
+                                        </span>
+                                </div>
+                                <div v-else>
+                                    <!--今天-->
+                                    <div v-if="day.time.getFullYear() == new Date().getFullYear() && day.time.getMonth() == new Date().getMonth() && day.time.getDate() == new Date().getDate()">
+                                        <span class="day current-day">
+                                                {{ day.time.getDate() }}
+                                                <i v-if="day.schedules.length > 0" class="calendar-active-bottom current-day-calendar-active-bottom"></i>
+                                            </span>
+                                    </div>
+                                    <div v-else>
+                                        <span class="day current-month">
+                                                {{ day.time.getDate() }}
+                                                <i v-if="day.schedules.length > 0" class="calendar-active-bottom month-calendar-active-bottom"></i>
+                                            </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-show="show_schedule" class="current-schedule">
+                        <div v-if="schedule_datas.length > 0">
+                            <ul>
+                                <li class="schedule-content" v-for="(schedule,index) in schedule_datas" :key="index" @click="checkScheduleDetail(index)">
+                                    <p class="schedule-title text-left">{{ schedule.title }}</p>
+                                    <p class="schedule-other-info clearfix">
+                                        <span class="fl text-left">{{ dealTime(schedule.begindate) + ' - ' + dealTime(schedule.enddate) }}</span>
+                                        <span class="fr text-right">{{ schedule.position }}</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-else class="warm-info">
+                            <!-- 日程暂改日历 -->
+                            <p>暂无日程，<span class="create-new-schedule" @click="addSchedule('schedule')">新建日程 > </span></p>
+                            <p class="warm-notice">你可以在这里看到自己的日程安排</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="clearfix">
+                <div class="footer-left fl">
+                    <!-- 日程暂改日历 -->
+                    <span v-if="schedule_datas.length > 0">{{ updata_time }}更新</span>
+                </div>
+            </footer>
+        </div>
+    </el-col>
+    <el-dialog id="schedule-dialog" :title="schedule_title" :close-on-click-modal="true" size="large" width="464px" inline v-model="show_schedule_dialog" @close="closeScheduleDialog('schedule')">
+        <el-form :model="schedule" ref="schedule" label-width="32px" :rules="schedule_rules">
+            <!-- :class="{ check-title: edit_or_check }" -->
+            <el-form-item prop="title">
+                <el-input v-model="schedule.title" :editable="edit_or_check" auto-complete="off" placeholder="请输入日程标题"></el-input>
+            </el-form-item>
+            <el-form-item label="选择时间" class="clearfix">
+                <i slot="label" class="ifbp-icon-watch el-icon-time"></i>
+                <div v-if="edit_or_check">
+                    <el-form-item prop="date1" class="fl">
+                        <el-date-picker class="choice-date" v-model="schedule.date1" @change="setDate2" :picker-options="date1_options" :show-icon="false" type="date" placeholder="选择日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item prop="time1" class="fl">
+                        <el-time-select class="choice-time" v-model="schedule.time1" :show-icon="false" :picker-options="{
+                                        start: '00:00',
+                                        step: '00:30',
+                                        end: '23:30'
+                                      }">
+                        </el-time-select>
+                    </el-form-item>
+                    <div class="fl" style="line-height: 32px; margin: 0 8px">至</div>
+                    <el-form-item prop="date2" class="fl">
+                        <el-date-picker class="choice-date" v-model="schedule.date2" :picker-options="date2_options" :show-icon="false" type="date" placeholder="选择日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item prop="time2" class="fl">
+                        <el-time-select class="choice-time" v-model="schedule.time2" :show-icon="false" :picker-options="{
+                                        start: '00:00',
+                                        step: '00:30',
+                                        end: '23:30'
+                                    }" placeholder="任意时间点">
+                        </el-time-select>
+                    </el-form-item>
+                </div>
+                <div v-else>
+                    <span>{{ schedule.time1 }} - {{ schedule.time2 }}</span>
+                </div>
+            </el-form-item>
+            <el-form-item v-if="edit_or_check" class="clearfix">
+                <!-- <el-form-item prop="all_day" class="fl">
+                        <el-checkbox v-model="schedule.all_day">全天</el-checkbox>
+                    </el-form-item> -->
+                <el-form-item prop="repeat" class="choice-repeat fl">
+                    <el-select v-model="schedule.repeat">
+                        <el-option v-for="(value,key) in schedule.repeat_data" :label="value" :value="key" :key="key"></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form-item>
+            <el-form-item prop="position" label="地址">
+                <i slot="label" class="ifbp-icon-place"></i>
+                <el-input v-model="schedule.position" placeholder="地址" :editable="edit_or_check" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item prop="attendee" label="参会人">
+                <i slot="label" class="ifbp-icon-group_add"></i>
+                <div v-if="edit_or_check">
+                    <el-select v-model="schedule.attendee" placeholder="参会人" multiple filterable remote :remote-method="getPersonInfoAttendee" :loading="loading" @change="getLabelAttendee">
+                        <el-option v-for="(item,index) in schedule.attendee_person_data" :label="item.user_name" :value="item.user_id" :key="index"></el-option>
+                    </el-select>
+                </div>
+                <div v-else>
+                    <p>{{ schedule.attendee_select_data.length }} 位参与人</p>
+                    <div v-for="(item,index) in schedule.attendee_select_data" class="check-attendee-person-info clearfix" :key="index">
+                        <!-- <div class="fl"><img :src="item.src" alt=""></div> -->
+                        <div class="check-attendee-person fl">
+                            <div class="person-name">{{ item.user_name }}</div>
+                            <!-- <div class="person-mail">{{ item.mail }}</div> -->
+                        </div>
+                    </div>
+                </div>
+            </el-form-item>
+            <el-form-item v-if="edit_or_check" prop="notify" label="知会人">
+                <i slot="label" class="ifbp-icon-group_add"></i>
+                <el-select v-model="schedule.notify" placeholder="知会人" multiple filterable remote :remote-method="getPersonInfoNotify" :loading="loading" @change="getLabelNotify">
+                    <el-option v-for="(item,index) in schedule.notify_person_data" :label="item.user_name" :value="item.user_id" :key="index"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item prop="remark" label="备注">
+                <i slot="label" class="ifbp-icon-sort"></i>
+                <el-input type="textarea" v-model="schedule.remark" resize="none" :rows="3" :editable="edit_or_check" :maxlength="50" placeholder="备注"></el-input>
+            </el-form-item>
+            <el-form-item prop="notice" label="提醒">
+                <i slot="label" class="ifbp-icon-notifications"></i>
+                <div v-if="edit_or_check">
+                    <div style="margin-bottom: 8px;" v-for="(item,index) in schedule.notice_data" :key="index">
+                        <el-form-item class="notice-common">
+                            <el-select v-model="item.notice_style">
+                                <el-option v-for="(val,key) in schedule.notice.styles" :label="val" :value="key" :key="key"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item class="notice-common">
+                            <el-input v-model.number="item.notice_number"></el-input>
+                        </el-form-item>
+                        <el-form-item class="notice-common">
+                            <el-select v-model="item.notice_type">
+                                <el-option v-for="(val,key) in schedule.notice.types" :label="val" :value="key" :key="key"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <div class="detele-notice"><i class="ifbp-icon-close el-icon-close el-icon-pt-guanbi" @click="deteleNotice(index)"></i></div>
+                    </div>
+                    <p style="line-height: 32px;">
+                        <span class="add-notice" v-if="schedule.notice_data.length < 5" @click="addNotice">添加提醒</span>
+                    </p>
+                </div>
+                <div v-else>
+                    <p v-for="(item,index) in schedule.notice_data" :key="index">
+                        提前 <span class="remind-number">{{ item.notice_number }}</span><span class="remind-type">{{ schedule.notice.types[item.notice_type] }}</span>提醒，以{{ schedule.notice.styles[item.notice_style] }}方式
+                    </p>
+                </div>
+            </el-form-item>
+            <el-form-item prop="importance" label="重要程度">
+                <i slot="label" class="ifbp-icon-star-on el-icon-star-on"></i>
+                <el-select v-model="schedule.importance" placeholder="重要程度" :editable="edit_or_check">
+                    <el-option v-for="(val,key) in schedule.importance_data" :label="val" :value="key" :key="index"></el-option>
+                </el-select>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <div v-if="edit_or_check">
+                <el-button @click="closeScheduleDialog('schedule')">取 消</el-button>
+                <el-button type="primary" @click="saveSchedule('schedule')">确 定</el-button>
+            </div>
+            <div v-else class="footer-operate">
+                <!-- <el-button @click="closeScheduleDialog('schedule')">取 消</el-button> -->
+
+                <i class="ifbp-icon-edit edit-btn" @click="editSchedule"></i>
+                <i class="ifbp-icon-delete el-icon-delete delete-btn" @click="deleteSchedule"></i>
+            </div>
+        </div>
+    </el-dialog>
+    <div v-show="show_month_schedule" id="month-schedule">
+        <ul>
+            <li class="schedule-content" v-for="(schedule,index) in schedule_datas" :key="index" @click="checkScheduleDetail(index)">
+                <p class="schedule-title text-left">{{ schedule.title }}</p>
+                <p class="schedule-other-info clearfix">
+                    <span class="fl text-left">{{ schedule.time1 }} - {{ schedule.time2 }}</span>
+                    <span class="fr text-right">{{ schedule.position }}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</el-row>

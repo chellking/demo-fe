@@ -1,0 +1,36 @@
+{
+    "type": "fbp",
+    "widgetsAuthorize": {
+        //获取角色及其模糊查询
+        "searchRoleFuzzy": "/f/baseapp/role/widget/rolePageList",
+        // 获取小部件
+        "searchWidget": "/f/baseapp/role/widget/widgetPageList",
+        //查询角色已授权的小部件
+        "searchWidgetByRole": "/f/baseapp/role/widget/widgetListByRoleId",
+        //删除已授权的小部件
+        "deleteWidgetAuthorize": "/f/baseapp/role/widget/delRoleWbWidget",
+        //保存小部件授权
+        "saveWidgetAuthorize": "/f/baseapp/role/widget/saveRoleWbWidget"
+    },
+    "apppermission": {
+        // 获取角色
+        "searchRole": "/f/baseapp/role/app/rolePageList",
+        // 获取磁贴
+        "searchApp": "/f/baseapp/role/app/appGroupList",
+        //查询角色已授权的磁贴
+        "searchAppByRole": "/f/baseapp/role/app/appListByRoleId",
+        //删除已授权的磁贴
+        "deleteAppAuthorize": "/f/baseapp/role/app/delRoleWbApp",
+        //保存磁贴授权
+        "saveAppAuthorize": "/f/baseapp/role/app/saveRoleWbApp"
+    },
+     "roleCon":{
+    	//获取角色 及模糊查询
+    	"searchRole": "/wbalone/roleMGT/listRolePage",
+    	//查询已分配或者未分配的用户 及模糊查询
+    	"getUser":"/wbalone/userMGT/pagingListByRole",
+    	//给角色分配用户 或取消分配
+    	"assignUserRole":"/wbalone/wbuserrole/assignUserRole"
+    }
+
+}

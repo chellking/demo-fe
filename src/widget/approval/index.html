@@ -1,0 +1,57 @@
+<div id="approval" class="approval home-list widget">
+    <div class="title">
+        <div class="main-title">我的审批</div>
+        <div class="billtype">
+            <span v-if="billTypeArr.length <= 3" v-for="(item, index) in billTypeArr" @click="search(item, index)">
+          {{item}}
+      </span></div>
+    </div>
+    <div class="container">
+        <ul class="list-content" v-if="todoListValue.length > 0">
+            <li v-for="item in todoListValue">
+                <span class="leibie">{{item.billtype}}</span>
+                <span class="time">
+            {{item.time}}
+          </span>
+                <div class="second-line">
+                    <span class="processInstanceName">{{item.itemName}}</span>
+                    <span class="shu">|</span>
+                    <span>{{item.reason}}</span>
+                    <span class="shu">|</span>
+                    <span>{{item.fee}}元</span>
+                </div>
+                <div class="third-line">
+                    <span class="bumen">{{item.dept}}</span>
+                    <span class="startParticipantName">{{item.dealMan}}</span>
+                    <span class="startTime">{{item.dealTime}}</span>
+                    <span v-show="item.label" class="label" v-text="item.label"></span>
+                </div>
+                <button class="reject" @click="showDialog(item, 'reject')">驳回</button>
+                <button class="agree" @click="showDialog(item, 'agree')">批准</button>
+            </li>
+        </ul>
+        <template v-else>
+            <section class="list-content">
+            <div class="no-result">
+                <i class="ifbp-icon-approve"></i>
+                <div>暂无审批</div>
+            </div>
+            </section>
+        </template>
+    </div>
+    <div class="footer">
+        <div class="footer-text">
+            <span class="fl" v-show="todoListValue.total && time"> {{this.size}}/<span class="total">{{this.todoListValue.total}}</span> &nbsp;&nbsp;&nbsp; {{time}}之前更新</span>
+            <a class="hrfont more" title="更多" @click="jumpMore">更多</a>
+        </div>
+    </div>
+
+    <el-dialog title="审批意见" :visible.sync="dialogVisible" size="tiny">
+        <el-input type="textarea" :rows="2" v-if="runType === 'agree'" placeholder="请输入批准理由" show-close="false" v-model="opinion"></el-input>
+        <el-input type="textarea" :rows="2" v-else-if="runType === 'reject'" placeholder="请输入驳回理由" show-close="false" v-model="opinion"></el-input>
+        <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="action">确 定</el-button>
+    </span>
+    </el-dialog>
+</div>

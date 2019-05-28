@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>链融云-构建生态金融</title>
+  <style media="screen">
+    html,
+    body {
+      height: 100%;
+    }
+
+    .main {
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 300px;
+      height: 200px;
+    }
+
+    table {
+      position: relative;
+      left: -150px;
+      top: -100px;
+    }
+
+    .login_dl,
+    .login_reset {
+      height: 30px;
+      width: 120px;
+      border: none;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-color: #DD3730;
+      color: #ffffff;
+    }
+
+    .login_input {
+      border: 1px solid #ccc;
+      background-color: #edf5fa;
+      height: 30px;
+      line-height: 30px;
+      width: 230px;
+      text-align: left;
+      padding-left: 30px;
+      color: #90a2bc;
+      font-size: 14px;
+      background-repeat: no-repeat;
+      background-position: 10px 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <table width="300" border="0" cellspacing="0" cellpadding="0" class="login_table">
+      <tbody>
+        <tr>
+          <td class="login_lable">
+            <div class="login_lable2">用户名：</div>
+            <input id="username" name="username" class="required login_input" tabindex="1" accesskey="n" type="text" value="" size="25" autocomplete="off">
+          </td>
+        </tr>
+        <tr>
+          <td class="login_lable">
+            <div class="login_lable2">登录密码：</div>
+            <input id="password" name="password" class="required login_input" tabindex="2" accesskey="p" type="password" value="" size="25" autocomplete="off" onkeydown="return keydown(event)">
+          </td>
+        </tr>
+        <tr>
+          <td height="70"><br>
+            <input type="hidden" name="lt" value="LT-14481-0gU7HQ0T5A7TV5Jxd3BEgVJkHorgJf-CAS-NODE-01">
+            <input type="hidden" name="execution" value="e1s1">
+            <input type="hidden" name="_eventId" value="submit">
+            <input name="submit" type="button" accesskey="l" class="login_dl" value="登录" onclick="login();">
+            <input name="reset" type="button" accesskey="c" class="login_reset" value="重置" onclick="clearForm();">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="./jquery-1.11.2.min.js"></script>
+  <script src="./knockout-3.2.0.debug.js"></script>
+  <script src="./u.js"></script>
+  <script type="text/javascript">
+    clearForm = function() {
+      $('#username').val('')
+      $('#password').val('')
+    }
+    keydown = function(e) {
+      var key = e.keyCode;
+      if (key === 13) {
+        login();
+      }
+    }
+    login = function() {
+      var d = {
+        "loginname": $('#username').val(),
+        "pwd": $('#password').val(),
+        "encrypt": "ON"
+      }
+      $.ajax({
+        url: '/wbalone/sso/appLogin',
+        data: JSON.stringify(d),
+        // data: d,
+        type: "post",
+        contentType: 'application/json',
+        success: function(data) {
+          if(data.success === true){
+            window.location.href = '/ap/index.html';
+          }else{
+            alert(data.data);
+          }
+        },
+        error: function(e) {}
+      })
+    }
+    $(window).on('load',function(){
+      $('#username').val('aa')
+      $('#password').val('123456')
+      login();
+    })
+  </script>
+</body>
+
+</html>

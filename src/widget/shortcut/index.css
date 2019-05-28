@@ -1,0 +1,94 @@
+.shortcut {
+    padding: 0;
+    width: 100%;
+}
+
+.shortcut li {
+    float: left;
+    list-style: none;
+    height: 78px;
+    border: 1px solid #E6E6EB;
+    border-radius: 4px;
+    /*margin: 8px;*/
+    text-align: center;
+    overflow: hidden;
+    padding-top: 32px;
+    background: #ffffff;
+    cursor: pointer;
+    width: calc(25% - 14px);
+    margin-right: 16px;
+    margin-bottom: 16px;
+    box-sizing: content-box;
+}
+
+@media (max-width: 768px) {
+    .shortcut li {
+        width: 100%;
+    }
+}
+
+.shortcut li:nth-child(4n+4) {
+    margin-right: 0;
+}
+
+.shortcut li:last-child {
+    margin: 0;
+}
+
+.shortcut .rightbox .title {
+    display: inline-block;
+    margin-top: 3px;
+}
+
+.shortcut .appIcon.iconfont_form {
+    font-size: 48px;
+}
+
+
+/*.shortcut li:nth-child(5n+5) {*/
+
+
+/*margin-top:16px;*/
+
+
+/*}*/
+
+.shortcut li img {
+    width: 35px;
+    height: 35px;
+}
+
+.shortcut .rightbox {
+    float: right;
+    text-align: left;
+    width: 60%;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 16px;
+}
+
+.shortcut .rightbox>p {
+    width: 100%;
+}
+
+.shortcut .rightbox>span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
+}
+
+.render-links {
+    width: 60px;
+    font-size: 14px;
+    color: #156ECF;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.render-links:hover {
+    color: deepskyblue;
+}

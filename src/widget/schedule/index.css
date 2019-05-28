@@ -1,0 +1,390 @@
+#schedule-container {
+    font-family: PingFangSC-Regular;
+    border-radius: 4px;
+    height: 400px;
+    font-size: 14px;
+}
+
+#schedule-container>header,
+#schedule-container>footer {
+    background-color: white;
+    color: #333;
+    text-align: center;
+}
+
+#schedule-container>header {
+    border-bottom: 1px solid #E6E6EB;
+    line-height: 52px;
+    height: 52px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    box-sizing: border-box;
+}
+
+#schedule-container>footer {
+    border-top: 1px solid #E6E6EB;
+    line-height: 48px;
+    height: 48px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-sizing: border-box;
+}
+
+.footer-left {
+    margin-left: 16px;
+    color: #666;
+}
+
+.schedule-main {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    height: 300px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.clearfix {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.schedule-logo {
+    margin-left: 16px;
+    font-family: PingFangSC-Medium;
+    font-size: 18px;
+    color: #333333;
+    line-height: 18px;
+}
+
+.schedule-today-btn {
+    padding: 0;
+    margin-left: 32px;
+    min-width: 44px;
+    height: 24px;
+}
+
+.schedule-change-month {
+    margin-left: 12px;
+    font-size: 12px;
+}
+
+
+/* 前面加class *x/
+
+
+/* [class*=" el-icon-"],
+[class*=" ifbp-icon-"],
+[class^=el-icon-],
+[class^=ifbp-icon-] {
+    vertical-align: sub;
+} */
+
+.schedule-change-month i {
+    cursor: pointer;
+    color: #8E8E93;
+    vertical-align: sub;
+}
+
+.schedule-current-month {
+    margin-left: 17px;
+    color: #2D2D2D;
+}
+
+.change-WM {
+    color: #888;
+    margin-right: 16px;
+    position: relative;
+    cursor: pointer;
+}
+
+.WM-active {
+    color: #333333;
+}
+
+.WM-active-bottom {
+    position: absolute;
+    bottom: -8px;
+    right: 5px;
+    width: 4px;
+    height: 4px;
+    background-color: #5AC8FA;
+    border-radius: 2px;
+}
+
+.add-schedule {
+    margin-right: 20px;
+}
+
+.add-schedule i {
+    vertical-align: sub;
+}
+
+.week-title ul li {
+    margin-top: 16px;
+    float: left;
+    width: 14%;
+    height: 16px;
+    line-height: 16px;
+    color: #888888;
+}
+
+.calendar ul li>div {
+    list-style: none;
+    float: left;
+    width: 14%;
+    height: 44px;
+    line-height: 44px;
+}
+
+.schedule-calendar-active {
+    color: #fff;
+    background-color: #2D2D2D;
+}
+
+.schedule-calendar-active:hover {
+    color: #fff !important;
+    background-color: #2D2D2D !important;
+}
+
+.calendar ul li div span {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+}
+
+.calendar ul li div span:hover {
+    background-color: #F0F0F5;
+}
+
+.current-day {
+    color: #fff;
+    background-color: #5AC8FA;
+}
+
+.current-day:hover {
+    color: #fff !important;
+    background-color: #5AC8FA !important;
+}
+
+.current-month {
+    /* color: #1C1C1C; */
+}
+
+.other-month {
+    color: #C8C8CD;
+}
+
+.current-month:hover,
+.other-month:hover {
+    /* color: #fff; */
+    background-color: #F0F0F5;
+}
+
+.calendar-active-bottom {
+    position: absolute;
+    bottom: 3px;
+    right: 15px;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.current-day-calendar-active-bottom {
+    background-color: #fff;
+}
+
+.month-calendar-active-bottom {
+    background-color: #5AC8FA;
+}
+
+.current-schedule {
+    height: 232px;
+    width: 100%;
+    overflow: auto;
+    border-top: 1px solid#E6E6EB;
+}
+
+.warm-info {
+    width: 288px;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 auto;
+    margin-top: 92px;
+}
+
+.warm-info p {
+    height: 24px;
+    line-height: 24px;
+}
+
+.warm-info p:first-child {
+    font-size: 16px;
+}
+
+.create-new-schedule {
+    color: #5AC8FA;
+    cursor: pointer;
+}
+
+.warm-notice {
+    color: #888;
+}
+
+.schedule-content {
+    margin: 8px 16px 7px 16px;
+    border-bottom: 1px solid #E6E6EB;
+}
+
+.schedule-title {
+    width: 288px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #333333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.schedule-other-info span {
+    color: #888888;
+    width: 144px;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#month-schedule {
+    position: fixed;
+    width: 320px;
+    background-color: #fff;
+}
+
+
+/* 弹窗 */
+
+#schedule-dialog {
+    color: #8E8E93;
+}
+
+.check-title {
+    font-size: 20px;
+    color: #2D2D2D;
+}
+
+.el-form-item__content {
+    line-height: 32px;
+}
+
+.choice-date {
+    width: 92px;
+}
+
+.choice-time {
+    margin-left: 8px;
+    width: 54px;
+}
+
+.choice-repeat {
+    /* margin-left: 8px; */
+    width: 90px;
+}
+
+.notice-common {
+    margin-right: 8px;
+    width: 115px;
+    display: inline-block;
+}
+
+.detele-notice {
+    line-height: 32px;
+    width: 10px;
+    text-align: center;
+    display: inline-block;
+    color: #bfccd9;
+}
+
+.add-notice {
+    cursor: pointer;
+}
+
+.check-attendee-person-info {
+    padding: 4px 8px;
+}
+
+.check-attendee-person {
+    line-height: 32px;
+}
+
+.check-attendee-person div {
+    line-height: 16px;
+}
+
+.check-attendee-person .person-name {
+    line-height: 16px;
+}
+
+.check-attendee-person .person-mail {
+    font-size: 12px;
+    color: #8E8E93;
+}
+
+.remind-number {
+    display: inline-block;
+    width: 25px;
+    text-align: center;
+}
+
+.remind-type {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+.el-form-item__label {
+    padding: 8px 12px 8px 0;
+    color: #8e8e93;
+}
+
+.footer-operate i {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.footer-operate .edit-btn {
+    margin-right: 8px;
+}
+.el-select__input {
+    color: #1f2e3d;
+}

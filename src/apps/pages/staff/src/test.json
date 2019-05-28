@@ -1,0 +1,42 @@
+{
+  "success" : true,
+  "message" : "保存成功!",
+  "data" : {
+    "unlink" : [ {
+      "id" : "54a6380808f64530a4e1bc9755ac4e50",
+      "roleName" : "yang",
+      "roleCode" : "0001",
+      "roleType" : "user",
+      "isActive" : "Y",
+      "createDate" : 1494568154000,
+      "tenantId" : "tenant",
+      "sysId" : null,
+      "label" : "mgrsource",
+      "remark" : null,
+      "creator" : "U001",
+      "modifyDate" : null,
+      "reviser" : null,
+      "labelName" : "管理员",
+      "dr" : 0,
+      "ts" : "1494568154600"
+    } ],
+    "linked" : [ {
+      "id" : "41e645682f384c4daaa5ff9f762e592f",
+      "roleName" : "张辉12同步",
+      "roleCode" : "zhanghui12sync",
+      "roleType" : "user",
+      "isActive" : "Y",
+      "createDate" : 1484742481000,
+      "tenantId" : "tenant",
+      "sysId" : null,
+      "label" : "buisource",
+      "remark" : null,
+      "creator" : "U001",
+      "modifyDate" : null,
+      "reviser" : null,
+      "labelName" : "业务员",
+      "dr" : 0,
+      "ts" : null
+    }]
+  }
+}

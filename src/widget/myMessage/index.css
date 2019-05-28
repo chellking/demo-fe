@@ -1,0 +1,430 @@
+.widget {
+    width: 100%;
+    /*width: 20rem;*/
+    height: auto;
+    background-color: #FFF;
+    /*box-shadow: 2px 2px 10px #CCC;*/
+    /* border: 1px solid #E6E6EB; */
+    border-radius: 4px;
+    margin: 0;
+}
+
+.widget .title {
+    /*height: 4.25rem;*/
+    height: 52px;
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    color: #333333;
+    border-bottom: 1px solid #E9E9E9;
+    /*padding: 1rem;*/
+    padding: 16px 16px 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.widget .main-title {
+    /*font-size: 1.125rem;*/
+    /*line-height: 1.125rem;*/
+    /*font-weight: normal;*/
+    /*color: #333333;*/
+    /*position: absolute;*/
+    /*top: 1rem;*/
+    font-size: 18px;
+    color: #333333;
+    line-height: 18px;
+}
+
+.widget .sub-title {
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+    color: #888888;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.widget .title-select {
+    width: 152px;
+    height: 32px;
+    float: right;
+    margin-top: -18px;
+}
+
+.widget .container {
+    padding: 0 1rem;
+    width: auto;
+}
+
+.widget .footer {
+    border-top: 1px solid #E9E9E9;
+    /*height: 2.5rem;*/
+    height: 48px;
+    /*padding: 0.8125rem 1rem;*/
+    padding: 15px 16px 16px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.widget .footer .footer-text {
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 0.875rem;
+    color: #888888;
+}
+
+.home-list .more {
+    float: right;
+    cursor: pointer
+}
+
+.home-list .container .list-title {
+    float: left;
+    margin-bottom: -2px
+}
+
+.home-list .container .list-title li {
+    float: left;
+    padding: 0 15px;
+    line-height: 34px;
+    border-bottom: 2px solid #EAEAEA;
+    cursor: pointer
+}
+
+.home-list .container .list-title li span {
+    color: #656565
+}
+
+.home-list .container .list-title .title-choose {
+    line-height: 34px;
+    border-bottom: 3px solid #FF8687
+}
+
+.home-list .container .list-title .title-choose span {
+    color: #333;
+    font-weight: bolder
+}
+
+.home-list .container .list-content {
+    /*border-top: 2px solid #EAEAEA;*/
+    height: 300px;
+    margin-top: -2px;
+    overflow: hidden;
+    clear: both
+}
+
+.home-list .container .list-content li {
+    line-height: 90px;
+    height: 90px;
+    border-bottom: 1px solid #E6E6EB;
+    /*cursor: pointer*/
+    position: relative;
+}
+
+.home-list .container .list-content li .startTime {
+    float: right;
+    font-size: 14px;
+    color: #888888;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+.home-list .container .list-content li .processInstanceName {
+    font-size: 16px;
+    color: #333333;
+    line-height: 24px;
+    position: absolute;
+    margin: 32px 0 31px;
+}
+
+.home-list .container .list-content li .leibie {
+    position: absolute;
+    top: 16px;
+    font-size: 14px;
+    color: #888888;
+    line-height: 14px;
+}
+
+.home-list .container .list-content li button {
+    background: #FFFFFF;
+    border: 1px solid #D2D2D7;
+    border-radius: 4px;
+    width: 60px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #75787B;
+    box-sizing: content-box;
+}
+
+.home-list .container .list-content li button:hover {
+    background: #FFFFFF;
+    border: 1px solid #00A3E0;
+    color: #00A3E0;
+    border-radius: 4px;
+}
+
+#firstPage .u-col-12 {
+    padding: 0!important;
+}
+
+/* .el-row>div {
+    overflow: hidden;
+} */
+
+.simple-screen {
+    height: calc(100vh - 180px);
+}
+
+.item-layout .simple-screen {
+    height: auto;
+}
+
+.simple-screen #widgetbox1,
+.simple-screen #widgetbox2,
+.simple-screen #widgetbox3,
+.simple-screen #widgetbox4 {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+.simple-screen .ui-grid .widgetBox {
+    height: 100%;
+}
+
+
+/*.ui-grid:nth-child(odd) {*/
+
+
+/*padding: 0 8px 0 0;*/
+
+
+/*}*/
+
+
+/*.ui-grid:nth-child(even) {*/
+
+
+/*padding: 0 0 0 8px;*/
+
+
+/*}*/
+
+.bg-grey-50 {
+    background-color: transparent!important;
+}
+
+.unsortable {
+    margin-bottom: 0;
+}
+
+.hrob-panel {
+    width: auto!important;
+    border-radius: 4px;
+    box-shadow: none!important;
+    border: 1px solid #E6E6EB!important;
+}
+
+
+/*.smiple-screen .ui-grid:nth-child(2) {*/
+
+
+/*padding: 8px 8px 0 0;*/
+
+
+/*}*/
+
+
+/*.smiple-screen .ui-grid:nth-child(3) {*/
+
+
+/*padding: 8px 0 0 8px;*/
+
+
+/*}*/
+
+.myMessage.widget .title {
+    height: 52px;
+}
+
+.myMessage.home-list .container .list-content li {
+    line-height: 74px;
+    height: 74px;
+    border-bottom: 1px solid #E6E6EB;
+    /* cursor: pointer; */
+    position: relative;
+}
+
+.myMessage.home-list .container .list-content {
+    height: 300px;
+}
+
+.myMessage.home-list .container .list-content li {
+    height: 75px;
+}
+
+.myMessage.widget {
+    height: auto;
+}
+
+.myMessage.footer {
+    height: auto;
+    padding: 16px;
+    overflow: hidden;
+}
+
+.myMessage .third-line {
+    position: absolute;
+    bottom: 8px;
+    font-size: 14px;
+    color: #888888;
+    line-height: 24px;
+    min-width: 350px;
+    overflow: hidden;
+}
+
+.myMessage .third-line span {
+    display: inline-block;
+    margin-right: 16px;
+}
+
+.myMessage.home-list .container .list-content li .startTime {
+    float: none;
+    font-size: 14px;
+    color: #888888;
+    line-height: inherit;
+    margin-top: 0;
+}
+
+.myMessage.home-list .container .list-content li .time {
+    float: right;
+    font-size: 14px;
+    color: #888888;
+    line-height: 14px;
+    margin-top: 16px;
+}
+
+.myMessage.home-list .container .list-content li .bumen {
+    position: static;
+    bottom: inherit;
+    font-size: 14px;
+    color: #888888;
+    line-height: inherit;
+    /* left: 300px; */
+    margin-left: 0;
+}
+
+.myMessage.home-list .container .list-content li .processInstanceName {
+    position: static;
+}
+
+.myMessage.home-list .container .list-content li .leibie i {
+    font-size: 16px;
+    vertical-align: sub;
+    height: 16px;
+    width: 16px;
+}
+
+.myMessage .second-line {
+    bottom: 16px;
+    position: absolute;
+    line-height: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.myMessage .second-line span {
+    font-size: 16px;
+    color: #2D2D2D;
+}
+
+.myMessage .second-line .shu {
+    display: inline-block;
+    margin: 0 8px;
+    color: #f3f3f5;
+}
+
+.myMessage .label {
+    font-size: 12px;
+    color: #FF9500;
+    text-align: center;
+    line-height: 24px;
+}
+
+.myMessage.home-list .container .list-content li .startParticipantName {
+    position: static;
+    bottom: 0;
+    font-size: 14px;
+    color: #888888;
+    line-height: 24px;
+}
+
+.myMessage.home-list .container .list-content li button.reject {
+    position: absolute;
+    bottom: 7px;
+    right: 84px
+}
+
+.myMessage.home-list .container .list-content li button.agree {
+    position: absolute;
+    bottom: 7px;
+    right: 0
+}
+
+.myMessage.home-list .container .list-content li button.agree {
+    background: #5AC8FA;
+    color: #ffffff;
+}
+
+.myMessage.home-list .container .list-content li button.agree:hover {
+    border: 1px solid #5AC8FA;
+    border-radius: 4px;
+    background: #5AC8FA;
+    color: #ffffff;
+}
+
+.myMessage .my-message {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
+
+.myMessage .my-message span {
+    display: inline-block;
+    font-size: 14px;
+    color: #75787B;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+.myMessage .my-message span.info-number {
+    margin: 0;
+}
+
+.myMessage .my-message span.active {
+    color: #00A3E0;
+}
+
+.message-defalt-info {
+    margin-top: 125px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.myMessage .no-result {
+    line-height: 20px;
+    text-align: center;
+    color: #75787B;
+    font-size: 14px;
+  }
+
+
+  .myMessage .no-result i {
+    margin: 104px 0 16px;
+    text-align: center;
+    font-size: 64px;
+    color: #3ABFA3;
+
+  }

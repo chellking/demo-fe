@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="人才流动" description="MyOrder">
+  </ModulePrefs>
+  <Content type="html" inline="true">
+    <![CDATA[
+            <div id="hrbphome-todo">
+
+            </div>
+            <script type="text/javascript">
+                require(["/ap/widget/todo/list-hrbphome-todo.js", "css!/ap/widget/todo/common.css"],function(a){
+                    a.init();
+                })
+            </script>
+	    ]]>
+  </Content>
+</Module>

@@ -1,0 +1,43 @@
+<div id="myMessage" class="myMessage home-list widget">
+    <div class="title">
+        <div class="main-title">我的消息</div>
+        <div class="my-message">
+            <span v-for="(item,index) in infoType" @click="getMessageData(item,index)">{{ item.name }}<span class="info-number" v-if="item.number > 0">（{{ item.number }}）</span></span>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="list-content" v-if="messageListValue.length > 0">
+            <li v-for="item in messageListValue" @click="jumpMore">
+                <span class="leibie">
+                      <i v-if="item.type == '审批'" class="ifbp-icon-notifications"></i>
+                      <i v-else-if="item.type == '预警'" class="ifbp-icon-warning el-icon-warning"></i>
+                      {{item.type}}
+                    </span>
+                <span class="time">
+                      {{item.send_time}}
+                    </span>
+                <div class="second-line" :title="item.title + ' | ' + item.creataor_name + ' | ' + item.content">
+                    <span class="processInstanceName">{{item.title}}</span>
+                    <span class="shu">|</span>
+                    <span>{{item.creataor_name}}</span>
+                    <span class="shu">|</span>
+                    <span>{{item.content}}</span>
+                </div>
+            </li>
+        </ul>
+        <template v-else>
+            <section class="list-content">
+            <div class="no-result">
+                <i class="ifbp-icon-email"></i>
+                <div>暂无消息</div>
+            </div>
+            </section>
+        </template>
+    </div>
+    <div class="footer">
+        <div class="footer-text">
+            <span class="fl" v-if="size > 0"> {{this.size}}/<span class="total" >{{this.total}}</span></span>
+            <a class="hrfont more" title="更多" @click="jumpMore">更多</a>
+        </div>
+    </div>
+</div>
