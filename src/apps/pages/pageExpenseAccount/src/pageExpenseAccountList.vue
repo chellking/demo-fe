@@ -1,7 +1,7 @@
 <template lang="html">
     <ifbp-page>
         <!-- 节点title -->
-        <ifbp-breadcrumb name="报销单"></ifbp-breadcrumb>
+        <ifbp-breadcrumb name="报销单1"></ifbp-breadcrumb>
         <!-- 按钮区域 -->
         <ifbp-button-area>
             <!-- 根据页面定制控制的权限来显示对应的按钮 -->
@@ -25,10 +25,10 @@
                     <i class="ifbp-icon-setting" @click="showHeaderSetting" title="设置"></i>
                 </div>
             </div>
-            <!-- UI模板组件 -->
+            <!-- UI模板组件   tpl-id="pageExpenseAccountList"-->
             <ifbp-template
                     ref="pageExpenseAccount"
-                    tpl-id="pageExpenseAccountList"
+
                     :tpl-data="pageExpenseAccountData"
                     :funnode="tableFunnode"
                     :nexuskey="tableNexuskey"

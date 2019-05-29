@@ -3,7 +3,7 @@ var path = require('path');
 var parserVuePlugin = require('fis3-parser-vue-component42.2.6');
 var pkg = require('./package.json');
 var pkgName = pkg.name;
-var moduleIdPre = 'i_uap/' + pkgName + '^';
+var moduleIdPre = 'mydemo/' + pkgName + '^';
 // var moduleIdPre = pkgName + '^';
 // var moduleIdPre = 'project-name/' + pkgName + '^';
 
@@ -180,7 +180,7 @@ fis.match('**', {
             noKeepSubPathPattern: '',
         }),
         fis.plugin('local-deliver', {
-            to: path.resolve(__dirname, './dist/i_uap/' + pkgName + '/output')
+            to: path.resolve(__dirname, './dist/mydemo/' + pkgName + '/output')
                 // to: path.resolve(__dirname, './dist/' + pkgName + '/output')
                 // to: path.resolve(__dirname, './dist/project-name/' + pkgName + '/output')
                 

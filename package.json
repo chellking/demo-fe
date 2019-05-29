@@ -1,5 +1,5 @@
 {
-  "name": "demo1",
+  "name": "demo",
   "version": "1.0.0",
   "description": "yonyou leasing system",
   "author": "liuyk",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "0.16.1",
+    "ifbp-business": "git+https://gitee.com/ifbp/ifbp-business.git#3.0.1-r3",
     "ifbp-element": "^1.1.46",
     "lodash": "4.17.4",
     "lodash.debounce": "4.0.8",
