@@ -2,12 +2,12 @@ module.exports = {
     routes: [
         {
             name: 'pageExpenseAccount',
-            path: '/pageExpenseAccount',
+            path: '/pageExpenseAccountDemo',
             component: './src/pageExpenseAccountList.vue'
         },
         {
             name: 'pageExpenseAccountDetail',
-            path: '/pageExpenseAccount/detail/:id',
+            path: '/pageExpenseAccountDemo/detail/:id',
             component: './src/pageExpenseAccountDetail.vue'
         },
     ]

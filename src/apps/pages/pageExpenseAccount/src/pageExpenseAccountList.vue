@@ -276,10 +276,10 @@
         },
         created() {
             // 获取页面配置信息
-            this.getPageModel(function (pageModel) {
-                // 获取按钮
-                this.mainBtns = pageModel.getButtons("pageExpenseAccountList");
-            });
+            // this.getPageModel(function (pageModel) {
+            //     // 获取按钮
+            //     this.mainBtns = pageModel.getButtons("pageExpenseAccountList");
+            // });
             this.getSceneCode();
         }
     };
