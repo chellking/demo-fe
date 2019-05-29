@@ -1,12 +1,10 @@
 var path = require('path');
 //var parserVuePlugin = require('fis3-parser-vue-component');
-var parserVuePlugin = require('fis3-parser-vue-component42.2.6');
+// var parserVuePlugin = require('fis3-parser-vue-component42.2.6');
 var pkg = require('./package.json');
 var pkgName = pkg.name;
-var moduleIdPre = 'mydemo/' + pkgName + '^';
-// var moduleIdPre = pkgName + '^';
+var moduleIdPre = pkgName + '^';
 // var moduleIdPre = 'project-name/' + pkgName + '^';
-
 // 需要构建的文件
 fis.set('project.fileType.text', 'vue');
 // fis.set('project.files', ['src/apps/**']);
@@ -17,7 +15,7 @@ fis.set('project.ignore', fis.get('project.ignore').concat(['output/**', 'DS_sto
 // https://github.com/fex-team/fis3-hook-commonjs (forwardDeclaration: true)
 fis.hook('commonjs', {
     extList: [
-        '.js', '.coffee', '.es6', '.jsx', '.vue',
+        '.js', '.coffee', '.es6', '.jsx', '.vue', 
     ],
     umd2commonjs: true,
     ignoreDependencies: [
@@ -26,17 +24,25 @@ fis.hook('commonjs', {
 });
 
 // 禁用components，启用node_modules
-fis.unhook('components');
+fis.unhook('components');  
 fis.hook('node_modules');
+  
 
-// 所有js文件
+// 所有js文件，都按es6进行编译。如果不需要编译的则放到static目录后续打包至dist下
 fis.match('(**).js', {
     isMod: true,
     moduleId: moduleIdPre + '$1',
     rExt: 'js',
-    useSameNameRequire: true,
-
+    useSameNameRequire: true, 
+    parser: [
+        fis.plugin('babel-6.x', {  
+            presets: ['es2015-loose', 'react', 'stage-3'],
+            // plugins: ['transform-flow-comments']
+        }),
+        fis.plugin('translate-es3ify', null, 'append')
+    ]
 });
+
 
 fis.match('node_modules/(**).vue', {
     isMod: true,
@@ -44,7 +50,9 @@ fis.match('node_modules/(**).vue', {
     rExt: 'js',
     useSameNameRequire: true,
     parser: [
-        parserVuePlugin,
+        fis.plugin('vue-component42.2.6',{
+            runtimeOnly:true
+        })
     ],
 
 });
@@ -57,17 +65,21 @@ fis.match('src/apps/pages/(**).vue', {
     rExt: 'js',
     useSameNameRequire: true,
     parser: [
-        parserVuePlugin,
+        fis.plugin('vue-component42.2.6',{
+            runtimeOnly:true
+        })
     ],
 });
 
 fis.match('src/apps/common/(**).vue', {
     isMod: true,
-    moduleId: moduleIdPre + './common/' + '$1' + '.vue',
+    moduleId: moduleIdPre + '/src/apps/common/' + '$1' + '.vue',
     rExt: 'js',
     useSameNameRequire: true,
     parser: [
-        parserVuePlugin,
+        fis.plugin('vue-component42.2.6',{
+            runtimeOnly:true
+        })
     ]
 });
 
@@ -77,7 +89,9 @@ fis.match('src/widgetVue/(**).vue', {
     rExt: 'js',
     useSameNameRequire: true,
     parser: [
-        parserVuePlugin,
+        fis.plugin('vue-component42.2.6',{
+            runtimeOnly:true
+        })
     ]
 });
 
@@ -180,10 +194,8 @@ fis.match('**', {
             noKeepSubPathPattern: '',
         }),
         fis.plugin('local-deliver', {
-            to: path.resolve(__dirname, './dist/mydemo/' + pkgName + '/output')
-                // to: path.resolve(__dirname, './dist/' + pkgName + '/output')
+            to: path.resolve(__dirname, './dist/' + pkgName + '/output')
                 // to: path.resolve(__dirname, './dist/project-name/' + pkgName + '/output')
-                
         })
     ]
 });

@@ -12,7 +12,7 @@ const crypto = require('crypto')
 const config = require('../config')
 const pkg = require('../package.json')
 //const pkgName = 'project1/' + pkg.name
-const pkgName = 'mydemo/' + pkg.name
+const pkgName = pkg.name; //'mydemo/' + pkg.name
 // const pkgName = pkg.name
 // const pkgName = 'project-name/' + pkg.name
 

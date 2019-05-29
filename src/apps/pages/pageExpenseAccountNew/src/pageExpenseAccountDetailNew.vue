@@ -85,7 +85,7 @@
 <script>
 import pageModelMixin from "ifbp-business/pageModelMixin"; // 平台封装的页面定制相关逻辑
 // import pageMixin from "../../../../common/pageMixin.js"; // 平台封装的页面相关逻辑
-import pageLazyMixin from "ifbp-business/pageLazyMixin";
+import pageLazyMixin from "ifbp-business/pageLazyMixin/index.js";
 import pageHotel from "./pageHotel.js"; // 其他UI模板逻辑处理
 import pageDynamic from "./pageDynamic.js"; // 动态区域逻辑处理
 import process from "./process.vue"; // 流程组件

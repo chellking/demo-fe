@@ -66,7 +66,7 @@
 
 <script>
     import pageExpenseAccountCard from "./pageExpenseAccountCard.vue";
-    import pageModelMixin from "../../../../common/pageModelMixin.js";
+    import pageModelMixin from "../../../common/pageModelMixin.js";
 
     export default {
         mixins: [pageModelMixin],
