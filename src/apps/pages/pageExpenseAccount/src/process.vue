@@ -1328,7 +1328,7 @@
             // 提交的时候需要首先发送一个请求
             initiateProcessBefore() {
                 return this.$http({
-                    url: '/ifbp-demo-web/BXHeader/submit',
+                    url: '/demo-web/BXHeader/submit',
                     headers: {
                         "Content-Type": "application/json"
                     },

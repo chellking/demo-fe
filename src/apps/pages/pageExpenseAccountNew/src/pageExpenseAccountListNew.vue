@@ -130,7 +130,7 @@ export default {
         };
       }
       this.$http({
-        url: "/ifbp-demo-web/BXHeader/page",
+        url: "/demo-web/BXHeader/page",
         method: "post",
         data: data,
         headers: {
@@ -194,7 +194,7 @@ export default {
     deleteClick() {
       var data = this.delId;
       this.$http({
-        url: "/ifbp-demo-web/BXHeader/deleteById",
+        url: "/demo-web/BXHeader/deleteById",
         method: "post",
         data: data,
         headers: {

@@ -138,7 +138,7 @@
             requestPageDetail() {
                 if (!this.id || this.id === "undefined") return;
                 return this.$http({
-                    url: "/ifbp-demo-web/BXHeader/getById",
+                    url: "/demo-web/BXHeader/getById",
                     method: "post",
                     data: this.id,
                     headers: {
@@ -186,12 +186,12 @@
             // 主表区域保存按钮处理
             pageFormConfirm() {
                 let vm = this;
-                let url = "/ifbp-demo-web/BXHeader/update";
+                let url = "/demo-web/BXHeader/update";
                 this.$refs.pageExpenseAccountDetail.validate(valid => {
                     if (valid) {
                         let data = vm.$refs.pageExpenseAccountDetail.getFormData();
                         if (!vm.id || vm.id === "undefined") {
-                            url = "/ifbp-demo-web/BXHeader/create";
+                            url = "/demo-web/BXHeader/create";
                         }
                         vm
                             .$http({
@@ -287,7 +287,7 @@
             // 提交的时候需要首先发送一个请求
             initiateProcessBefore() {
                 return this.$http({
-                    url: '/ifbp-demo-web/BXHeader/submit',
+                    url: '/demo-web/BXHeader/submit',
                     headers: {
                         "Content-Type": "application/json"
                     },

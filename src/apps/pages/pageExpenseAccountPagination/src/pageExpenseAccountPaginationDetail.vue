@@ -151,7 +151,7 @@ export default {
       // debugger;
       if (!this.id || this.id === "undefined") return;
       return this.$http({
-        url: "/ifbp-demo-web/BXHeader/getById",
+        url: "/demo-web/BXHeader/getById",
         method: "post",
         data: this.id,
         headers: {
@@ -198,12 +198,12 @@ export default {
     },
     // 主表区域保存按钮处理
     pageFormConfirm() {
-      let url = "/ifbp-demo-web/BXHeader/update";
+      let url = "/demo-web/BXHeader/update";
       this.$refs.pageExpenseAccountDetail.validate(valid => {
         if (valid) {
           let data = this.$refs.pageExpenseAccountDetail.getFormData();
           if (!this.id || this.id === "undefined") {
-            url = "/ifbp-demo-web/BXHeader/create";
+            url = "/demo-web/BXHeader/create";
           }
           this
             .$http({
@@ -299,7 +299,7 @@ export default {
     // 提交的时候需要首先发送一个请求
     initiateProcessBefore() {
       return this.$http({
-        url: '/ifbp-demo-web/BXHeader/submit',
+        url: '/demo-web/BXHeader/submit',
         headers: {
           "Content-Type": "application/json"
         },

@@ -116,10 +116,10 @@ export default {
       //   }
       // };
       if (code === "travelAccount") {
-        url = '/ifbp-demo-web/BXTransCost/page';
+        url = '/demo-web/BXTransCost/page';
       }
       if (code === "busiAccount") {
-        url = '/ifbp-demo-web/travelAllowance/page';
+        url = '/demo-web/travelAllowance/page';
       }
       this.$http({
           url: url,
@@ -222,10 +222,10 @@ export default {
       var vm = this;
       var url;
       if (item.code === "travelAccount") {
-        url = "/ifbp-demo-web/BXTransCost/update";
+        url = "/demo-web/BXTransCost/update";
       }
       if (item.code === "busiAccount") {
-        url = "/ifbp-demo-web/travelAllowance/update";
+        url = "/demo-web/travelAllowance/update";
       }
       this.$refs['pageDynamic'].$refs['dynamic_' + item.code][0].validate((valid) => {
         if (valid) {
@@ -235,10 +235,10 @@ export default {
           });
           if (type === "form") {
             if (item.code === "travelAccount") {
-              url = "/ifbp-demo-web/BXTransCost/create";
+              url = "/demo-web/BXTransCost/create";
             }
             if (item.code === "busiAccount") {
-              url = "/ifbp-demo-web/travelAllowance/create";
+              url = "/demo-web/travelAllowance/create";
             }
           }
           vm.$http({
@@ -290,10 +290,10 @@ export default {
       var data = this.pageDyDelData;
       var url;
       if (this.dynamicCode === "travelAccount") {
-        url = "/ifbp-demo-web/BXTransCost/delete";
+        url = "/demo-web/BXTransCost/delete";
       }
       if (this.dynamicCode === "busiAccount") {
-        url = '/ifbp-demo-web/travelAllowance/delete';
+        url = '/demo-web/travelAllowance/delete';
       }
       this.$http({
           url: url,

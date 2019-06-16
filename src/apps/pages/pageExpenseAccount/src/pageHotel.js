@@ -72,7 +72,7 @@ export default {
                 }
             };
             this.$http({
-                url: '/ifbp-demo-web/hotelCost/page',
+                url: '/demo-web/hotelCost/page',
                 method: 'post',
                 data: data,
                 headers: {
@@ -109,7 +109,7 @@ export default {
         // 其他UI模板区域表单的保存按钮处理
         pageHotelFormConfirm(type) {
             let vm = this;
-            let url = "/ifbp-demo-web/hotelCost/update";
+            let url = "/demo-web/hotelCost/update";
             this.$refs.pageHotel.validate(valid => {
                 if (valid) {
                     let data = vm.$refs.pageHotel.getFormData();
@@ -118,7 +118,7 @@ export default {
                         fk_id_hotelcostentity: vm.id
                     });
                     if (type === 'form') {
-                        url = "/ifbp-demo-web/hotelCost/create";
+                        url = "/demo-web/hotelCost/create";
                     }
                     vm.$http({
                         url: url,
@@ -187,7 +187,7 @@ export default {
         pageHotelDelDialogClick() {
             var data = this.pageHotelDelData;
             this.$http({
-                url: "/ifbp-demo-web/hotelCost/delete",
+                url: "/demo-web/hotelCost/delete",
                 method: "post",
                 data: data,
                 headers: {

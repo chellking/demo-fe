@@ -85,7 +85,10 @@
 
                 showTable: true,
                 // 按钮区
-                mainBtns: [],
+                mainBtns: [{
+                    displayName: '新增',
+                    event:'add'
+                }],
                 // UI模板相关变量
                 pageExpenseAccountData: {},
                 pageExpenseAccountResetFun: function ($node) {
@@ -148,7 +151,7 @@
                     };
                 }
                 this.$http({
-                    url: "/ifbp-demo-web/BXHeader/page",
+                    url: "/demo-web/BXHeader/page",
                     method: "post",
                     data: data,
                     headers: {
@@ -212,7 +215,7 @@
             deleteClick() {
                 var data = this.delId;
                 this.$http({
-                    url: "/ifbp-demo-web/BXHeader/deleteById",
+                    url: "/demo-web/BXHeader/deleteById",
                     method: "post",
                     data: data,
                     headers: {
