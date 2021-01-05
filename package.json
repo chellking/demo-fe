@@ -13,7 +13,7 @@
     "buildf": "npm run buildConfigFbp && npm run build"
   },
   "dependencies": {
-    "axios": "0.16.1",
+    "axios": "0.21.1",
     "ifbp-business": "git+https://gitee.com/ifbp/ifbp-business.git#3.0.1-r3",
     "ifbp-element": "^1.1.46",
     "lodash": "4.17.4",
